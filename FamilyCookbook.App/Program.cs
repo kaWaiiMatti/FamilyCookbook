@@ -1,3 +1,4 @@
+using FamilyCookbook.App.Endpoints;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
@@ -62,8 +63,7 @@ app.MapGet("/weatherforecast", (ClaimsPrincipal user) =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/", [Authorize] () => Results.Redirect("/index.html"));
-
+app.RegisterClientServingEndpoints();
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
