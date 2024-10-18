@@ -1,6 +1,8 @@
 using FamilyCookbook.App.Endpoints;
+using FamilyCookbook.Data;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using System.Security.Claims;
 
@@ -15,6 +17,9 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build());
+
+
+builder.Services.AddDbContext<CookbookDataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
