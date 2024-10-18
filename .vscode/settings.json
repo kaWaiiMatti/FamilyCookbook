@@ -1,0 +1,9 @@
+{
+  "dotnet.preferVisualStudioCodeFileSystemWatcher": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "omnisharp.useEditorFormattingSettings": false,
+  "csharp.format.enable": true
+}

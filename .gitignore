@@ -2,3 +2,7 @@
 */obj/
 
 *.tsbuildinfo
+
+# postgres container data
+Docker/*/data/
+Docker/**/*password*.txt
