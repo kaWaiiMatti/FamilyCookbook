@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
   const [result, setResult] = useState<string>("");
@@ -14,6 +14,7 @@ function App() {
     <>
       <h2>Weatherforecast</h2>
       <p>{result}</p>
+      <Link to="/hello">Go to hello</Link>
     </>
   );
 }
