@@ -68,6 +68,7 @@ app.MapGet("/weatherforecast", (ClaimsPrincipal user) =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+
 app.RegisterClientServingEndpoints();
 app.Run();
 
