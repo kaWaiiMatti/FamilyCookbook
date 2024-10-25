@@ -2,6 +2,10 @@
   "name": "familycookbook-client",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "pnpm": ">=9",
+    "node": ">=20"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
