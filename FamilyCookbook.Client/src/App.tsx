@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <h2>Weatherforecast</h2>
+      <h1 className="title">Weatherforecast</h1>
       <p>{result}</p>
       <Link to="/hello">Go to hello</Link>
     </>

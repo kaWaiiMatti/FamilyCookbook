@@ -69,7 +69,10 @@ app.MapGet("/weatherforecast", (ClaimsPrincipal user) =>
 .WithOpenApi();
 
 
+
 app.RegisterClientServingEndpoints();
+app.RegisterClientRouteEndpoints();
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
