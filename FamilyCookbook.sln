@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.App", "Famil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.Data", "FamilyCookbook.Data\FamilyCookbook.Data.csproj", "{D291194D-222F-48A2-9F0F-5877C3BBD416}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.MVC", "FamilyCookbook.MVC\FamilyCookbook.MVC.csproj", "{B7812301-B644-4A58-8C22-05293C0FD923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7812301-B644-4A58-8C22-05293C0FD923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7812301-B644-4A58-8C22-05293C0FD923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7812301-B644-4A58-8C22-05293C0FD923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7812301-B644-4A58-8C22-05293C0FD923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
