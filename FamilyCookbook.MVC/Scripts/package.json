@@ -1,0 +1,14 @@
+{
+  "name": "family-cookbook-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
