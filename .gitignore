@@ -1,6 +1,7 @@
 */bin/
 */obj/
-*/wwwroot/
+FamilyCookbook.App/wwwroot/
+FamilyCookbook.MVC/wwwroot/js/
 
 **/node_modules/
 
