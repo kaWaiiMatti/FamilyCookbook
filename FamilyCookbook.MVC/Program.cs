@@ -1,5 +1,7 @@
+using FamilyCookbook.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
@@ -12,11 +14,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
 
-
 builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build());
+
+builder.Services.AddDbContext<CookbookDataContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
 
 var app = builder.Build();
 
