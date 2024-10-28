@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.App", "FamilyCookbook.App\FamilyCookbook.App.csproj", "{26DE334B-AE44-42FC-A28F-CFCCEB2D1181}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.Data", "FamilyCookbook.Data\FamilyCookbook.Data.csproj", "{D291194D-222F-48A2-9F0F-5877C3BBD416}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCookbook.MVC", "FamilyCookbook.MVC\FamilyCookbook.MVC.csproj", "{B7812301-B644-4A58-8C22-05293C0FD923}"
@@ -18,10 +16,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26DE334B-AE44-42FC-A28F-CFCCEB2D1181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26DE334B-AE44-42FC-A28F-CFCCEB2D1181}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26DE334B-AE44-42FC-A28F-CFCCEB2D1181}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26DE334B-AE44-42FC-A28F-CFCCEB2D1181}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D291194D-222F-48A2-9F0F-5877C3BBD416}.Release|Any CPU.ActiveCfg = Release|Any CPU
