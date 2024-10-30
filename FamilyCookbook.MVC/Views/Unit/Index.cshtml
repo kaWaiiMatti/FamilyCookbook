@@ -1,0 +1,57 @@
+﻿@model UnitViewModel
+
+@{
+  ViewData["Title"] = "Units";
+}
+
+<h1 class="title">Units</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Abbreviation</th>
+  </tr>
+  </thead>
+  <tbody>
+  @foreach (var unit in Model.Units)
+  {
+    <tr>
+      <td>@unit.Name</td>
+      <td>@unit.Abbreviation</td>
+    </tr>
+  }  
+  </tbody>
+</table>
+
+
+<h1 class="title">New unit</h1>
+<form asp-area="" asp-controller="Unit" asp-action="NewUnit" method="post">
+  <div class="field">
+    <label class="label" for="new-unit-name">Name</label>
+    <div class="control">
+      <input class="input" id="new-unit-name" name="name" type="text" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label" for="new-unit-abbreviation">Abbreviation</label>
+    <div class="control">
+      <input class="input" id="new-unit-abbreviation" name="abbreviation" type="text" required>
+    </div>
+  </div>
+
+  <div class="control">
+    <button class="button is-primary">Add unit</button>
+  </div>
+</form>
+
+@section Scripts {
+  <script src="~/js/unit.js" asp-append-version="true"></script>
+  <script>
+
+    const button = document.getElementById('click-me');
+    console.log(button);
+    button.addEventListener('click', (event) => helloClick(event));
+
+    </script>
+}

@@ -22,4 +22,9 @@
   <ItemGroup>
     <ProjectReference Include="..\FamilyCookbook.Data\FamilyCookbook.Data.csproj"/>
   </ItemGroup>
+    
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Unit\Index.cshtml" />
+    <AdditionalFiles Include="Views\Unit\Privacy.cshtml" />
+  </ItemGroup>
 </Project>
