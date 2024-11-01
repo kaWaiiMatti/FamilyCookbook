@@ -1,4 +1,5 @@
-﻿@model UnitViewModel
+﻿@using FamilyCookbook.Data.Entities
+@model UnitViewModel
 
 @{
   ViewData["Title"] = "Units";
@@ -29,14 +30,14 @@
   <div class="field">
     <label class="label" for="new-unit-name">Name</label>
     <div class="control">
-      <input class="input" id="new-unit-name" name="name" type="text" required>
+      <input class="input" id="new-unit-name" name="name" type="text" required maxlength="@UnitEntity.MaxNameLength">
     </div>
   </div>
 
   <div class="field">
     <label class="label" for="new-unit-abbreviation">Abbreviation</label>
     <div class="control">
-      <input class="input" id="new-unit-abbreviation" name="abbreviation" type="text" required>
+      <input class="input" id="new-unit-abbreviation" name="abbreviation" type="text" required maxlength="@UnitEntity.MaxAbbreviationLength">
     </div>
   </div>
 
