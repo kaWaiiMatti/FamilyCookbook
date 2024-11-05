@@ -1,5 +1,4 @@
 using FamilyCookbook.Data;
-using FamilyCookbook.MVC.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +21,6 @@ builder.Services.AddAuthorizationBuilder()
 
 builder.Services.AddDbContext<CookbookDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
-
-builder.Services.AddScoped<IUnitLogic, UnitLogic>();
 
 var app = builder.Build();
 

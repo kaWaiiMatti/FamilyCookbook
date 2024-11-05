@@ -13,4 +13,3 @@ indent_size = 2
 indent_size = 4
 csharp_style_prefer_primary_constructors = false
 csharp_style_namespace_declarations = file_scoped
-resharper_convert_to_primary_constructor_highlighting = none
