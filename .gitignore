@@ -2,8 +2,6 @@
 */obj/
 */wwwroot/
 
-**/node_modules/
-
 *.tsbuildinfo
 *.user
 
