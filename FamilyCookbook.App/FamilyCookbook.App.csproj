@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FamilyCookbook.Data\FamilyCookbook.Data.csproj"/>
+    <ProjectReference Include="..\FamilyCookbook.Data\FamilyCookbook.Data.csproj" />
   </ItemGroup>
 
 </Project>
