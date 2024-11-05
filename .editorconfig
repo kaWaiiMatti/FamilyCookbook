@@ -1,12 +1,12 @@
 root = true
 
-[*.{cs,cshtml,css,html,js,jsx,ts,tsx}]
+[*.{cs,css,html,js,jsx,ts,tsx}]
 charset = utf-8
 end_of_line = lf
 indent_style = space
 insert_final_newline = true
 
-[*.{cshtml,css,html,js,jsx,ts,tsx}]
+[*.{css,html,js,jsx,ts,tsx}]
 indent_size = 2
 
 [*.cs]
