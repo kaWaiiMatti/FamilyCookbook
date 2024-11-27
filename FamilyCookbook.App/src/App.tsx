@@ -5,7 +5,7 @@ function App() {
   const [result, setResult] = useState<string>("");
 
   useEffect(() => {
-    fetch("/weatherforecast")
+    fetch("http://localhost:7243/weatherforecast")
       .then((response) => response.text())
       .then((text) => setResult(text));
   }, []);
