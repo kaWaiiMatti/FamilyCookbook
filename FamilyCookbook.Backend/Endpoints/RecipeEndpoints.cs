@@ -1,4 +1,4 @@
-namespace FamilyCookbook.App.Endpoints;
+namespace FamilyCookbook.Backend.Endpoints;
 
 public static class RecipeEndpoints
 {

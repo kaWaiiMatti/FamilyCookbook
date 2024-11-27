@@ -1,4 +1,4 @@
-namespace FamilyCookbook.App;
+namespace FamilyCookbook.Backend;
 
 public interface IRecipeLogic
 {

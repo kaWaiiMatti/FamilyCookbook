@@ -1,6 +1,6 @@
 using FamilyCookbook.Data.Entities;
 
-namespace FamilyCookbook.App.Dto;
+namespace FamilyCookbook.Backend.Dto;
 
 public class NewUnitDto
 {

@@ -1,7 +1,7 @@
-using FamilyCookbook.App.Dto;
+using FamilyCookbook.Backend.Dto;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FamilyCookbook.App.Endpoints;
+namespace FamilyCookbook.Backend.Endpoints;
 
 public static class UnitEndpoints
 {

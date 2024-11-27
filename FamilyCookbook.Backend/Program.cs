@@ -1,4 +1,3 @@
-using FamilyCookbook.App.Endpoints;
 using FamilyCookbook.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;

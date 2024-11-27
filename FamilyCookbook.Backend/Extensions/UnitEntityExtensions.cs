@@ -1,7 +1,7 @@
-using FamilyCookbook.App.Dto;
+using FamilyCookbook.Backend.Dto;
 using FamilyCookbook.Data.Entities;
 
-namespace FamilyCookbook.App.Extensions;
+namespace FamilyCookbook.Backend.Extensions;
 
 public static class UnitEntityExtensions
 {

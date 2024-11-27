@@ -1,4 +1,4 @@
-namespace FamilyCookbook.App.Dto;
+namespace FamilyCookbook.Backend.Dto;
 
 public class NewRecipeDto
 {

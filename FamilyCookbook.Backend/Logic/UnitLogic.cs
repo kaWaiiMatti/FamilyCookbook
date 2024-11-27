@@ -1,9 +1,9 @@
-using FamilyCookbook.App.Dto;
-using FamilyCookbook.App.Extensions;
+using FamilyCookbook.Backend.Dto;
+using FamilyCookbook.Backend.Extensions;
 using FamilyCookbook.Data;
 using FamilyCookbook.Data.Entities;
 
-namespace FamilyCookbook.App;
+namespace FamilyCookbook.Backend;
 
 public interface IUnitLogic
 {
