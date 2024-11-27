@@ -1,25 +1,28 @@
 using FamilyCookbook.App.Endpoints;
 using FamilyCookbook.Data;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Web;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration)
-    .EnableTokenAcquisitionToCallDownstreamApi()
-    .AddInMemoryTokenCaches();
+var tenantId = builder.Configuration["Auth:TenantId"] ?? throw new NullReferenceException("No tenant id found");
 
-builder.Services.AddAuthorizationBuilder()
-    .SetFallbackPolicy(new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build());
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = $"https://login.microsoftonline.com/{tenantId}";
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidIssuer = $"https://{tenantId}.ciamlogin.com/{tenantId}/v2.0",
+            ValidAudience = builder.Configuration["Auth:ClientId"],
+        };
+    });
 
-
-builder.Services.AddDbContext<CookbookDataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
+builder.Services.AddDbContext<CookbookDataContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -35,16 +38,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-var staticFileOptions = new StaticFileOptions();
-if (app.Environment.IsDevelopment())
-{
-    staticFileOptions.OnPrepareResponse = context =>
-        {
-            context.Context.Response.Headers.Append("Cache-Control", "no-cache, no-store");
-        };
-}
-app.UseStaticFiles(staticFileOptions);
-
 app.UseAuthorization();
 
 var summaries = new[]
@@ -53,25 +46,21 @@ var summaries = new[]
 };
 
 app.MapGet("/weatherforecast", (ClaimsPrincipal user) =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-// .RequireAuthorization()
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-
-
-app.RegisterClientServingEndpoints();
-app.RegisterClientRouteEndpoints();
+    {
+        Console.WriteLine($"User: {user.Identity?.Name}");
+        var forecast = Enumerable.Range(1, 5).Select(index =>
+                new WeatherForecast
+                (
+                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    Random.Shared.Next(-20, 55),
+                    summaries[Random.Shared.Next(summaries.Length)]
+                ))
+            .ToArray();
+        return forecast;
+    })
+    .RequireAuthorization()
+    .WithName("GetWeatherForecast")
+    .WithOpenApi();
 
 app.Run();
 
