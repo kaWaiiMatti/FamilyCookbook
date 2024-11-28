@@ -19,6 +19,7 @@ builder.Services
             ValidAudience = builder.Configuration["Auth:ClientId"],
         };
     });
+builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<CookbookDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
