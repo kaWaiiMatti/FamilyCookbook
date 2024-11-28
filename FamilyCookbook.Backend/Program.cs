@@ -20,21 +20,8 @@ builder.Services
         };
     });
 
-
-builder.Services.AddAuthorization();
-
 builder.Services.AddDbContext<CookbookDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
-
-const string corsLocalhost = "corsAllowLocalhost";
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(corsLocalhost, policy  =>
-        {
-            policy.WithOrigins("http://localhost:5173"); // .AllowAnyHeader().AllowAnyMethod()
-        });
-});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -50,9 +37,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(corsLocalhost);
-
-app.UseAuthentication();
 app.UseAuthorization();
 
 var summaries = new[]
