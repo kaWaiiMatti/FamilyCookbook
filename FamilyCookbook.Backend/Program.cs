@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 var tenantId = builder.Configuration["Auth:TenantId"] ?? throw new NullReferenceException("No tenant id found");
+var clientId = builder.Configuration["Auth:ClientId"] ?? throw new NullReferenceException("No client id found");
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -16,7 +17,7 @@ builder.Services
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidIssuer = $"https://{tenantId}.ciamlogin.com/{tenantId}/v2.0",
-            ValidAudience = builder.Configuration["Auth:ClientId"],
+            ValidAudience = clientId,
         };
     });
 builder.Services.AddAuthorization();

@@ -12,8 +12,6 @@ import { LogLevel } from '@azure/msal-browser';
  */
 
 export const msalConfig = {
-
-  // TODO: SET CORRECT VALUES HERE.
     auth: {
         clientId: 'aad17cc4-a904-460a-994a-4ff5b56d0b24', // This is the ONLY mandatory field that you need to supply.
         authority: 'https://otherfamilycookbook.ciamlogin.com/', // Replace the placeholder with your tenant subdomain
@@ -59,9 +57,7 @@ export const msalConfig = {
  * https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
 export const loginRequest = {
-    scopes: [
-        "api://d165df3d-23bf-488a-9737-d74762acb2c7/.default"
-    ],
+    scopes: [],
 };
 
 /**

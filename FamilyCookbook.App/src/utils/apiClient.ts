@@ -15,15 +15,13 @@ async function get<T>(endpoint: string, options: RequestOptions | null = null): 
   }
 
   const headers: HeadersInit = { ...defaultHeaders };
-  console.log("fetching access token");
   const account = msalInstance.getActiveAccount();
   if (!account) {
     throw Error("No active account");
   }
 
   const tokenResponse = await msalInstance.acquireTokenSilent({
-    scopes: ["api://0b74c7ae-6eba-4d32-a795-78aaf1370162/Requests.All"],
-    account
+    scopes: ["api://d165df3d-23bf-488a-9737-d74762acb2c7/.default"],
   });
   headers["Authorization"] = `Bearer ${tokenResponse.accessToken}`;
 
@@ -43,10 +41,6 @@ async function get<T>(endpoint: string, options: RequestOptions | null = null): 
 // TODO: REMOVE ONCE POST FUNCTION IS USED
 // @ts-ignore
 async function post<T, B>(endpoint: string, body: B, options: RequestOptions | null = null): Promise<T> {
-  if (options) {
-    console.log(options);
-  }
-
   const response = await fetch(endpoint, {
     method: "POST",
     headers: defaultHeaders,
@@ -62,5 +56,5 @@ async function post<T, B>(endpoint: string, body: B, options: RequestOptions | n
 }
 
 export async function getWeatherForecast(): Promise<string> {
-  return JSON.stringify(await get("api/home/"));
+  return JSON.stringify(await get("weatherforecast"));
 }

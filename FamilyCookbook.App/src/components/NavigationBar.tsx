@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom";
+import {
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+  useMsal,
+} from "@azure/msal-react";
+import { loginRequest } from "../authConfig";
 
 const NavigationBar = () => {
+  const { instance } = useMsal();
+
+  const handleLoginRedirect = () => {
+    instance.loginRedirect(loginRequest).catch((error) => console.log(error));
+  };
+
+  const handleLogoutRedirect = () => {
+    instance.logoutRedirect().catch((error) => console.log(error));
+  };
+
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
-          <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="640"
+            height="160"
+            viewBox="0 0 640 160"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -27,7 +49,8 @@ const NavigationBar = () => {
           className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample">
+          data-target="navbarBasicExample"
+        >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -69,9 +92,21 @@ const NavigationBar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <button className="button" onClick={() => alert('Sorry, not implemented')}>
-                Sign out
-              </button>
+              <AuthenticatedTemplate>
+                <button className="button" onClick={handleLogoutRedirect}>
+                  Sign out
+                </button>
+              </AuthenticatedTemplate>
+              <UnauthenticatedTemplate>
+                {/* <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">Log in</a> */}
+
+                <button className="button" onClick={handleLoginRedirect}>
+                  Sign in
+                </button>
+              </UnauthenticatedTemplate>
             </div>
           </div>
         </div>
