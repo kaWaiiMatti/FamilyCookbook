@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import { msalConfig } from "./authConfig.ts";
 import { AuthenticationResult, EventType, PublicClientApplication } from "@azure/msal-browser";
-import { MsalProvider } from "@azure/msal-react";
+import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react";
 import { UnitsView } from "./views/UnitsView.tsx";
+import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -49,12 +50,15 @@ msalInstance.initialize().then(() => {
   });
 });
 
-
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MsalProvider instance={msalInstance}>
-      <RouterProvider router={router} />
+      <AuthenticatedTemplate>
+        <RouterProvider router={router} />
+      </AuthenticatedTemplate>
+      <UnauthenticatedTemplate>
+        <UnauthenticatedView/>
+      </UnauthenticatedTemplate>
     </MsalProvider>
   </StrictMode>
 );

@@ -1,17 +1,8 @@
 import { Link } from "react-router-dom";
-import {
-  AuthenticatedTemplate,
-  UnauthenticatedTemplate,
-  useMsal,
-} from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { useMsal } from "@azure/msal-react";
 
 const NavigationBar = () => {
   const { instance } = useMsal();
-
-  const handleLoginRedirect = () => {
-    instance.loginRedirect(loginRequest).catch((error) => console.log(error));
-  };
 
   const handleLogoutRedirect = () => {
     instance.logoutRedirect().catch((error) => console.log(error));
@@ -96,21 +87,9 @@ const NavigationBar = () => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <AuthenticatedTemplate>
                 <button className="button" onClick={handleLogoutRedirect}>
                   Sign out
                 </button>
-              </AuthenticatedTemplate>
-              <UnauthenticatedTemplate>
-                {/* <a class="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">Log in</a> */}
-
-                <button className="button" onClick={handleLoginRedirect}>
-                  Sign in
-                </button>
-              </UnauthenticatedTemplate>
             </div>
           </div>
         </div>
