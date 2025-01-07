@@ -55,6 +55,6 @@ async function post<T, B>(endpoint: string, body: B, options: RequestOptions | n
   return data;
 }
 
-export async function getWeatherForecast(): Promise<string> {
-  return JSON.stringify(await get("weatherforecast"));
+export async function getUnits(): Promise<string> {
+  return JSON.stringify(await get("api/units"));
 }

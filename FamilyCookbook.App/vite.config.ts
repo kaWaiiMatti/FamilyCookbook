@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/weatherforecast": "http://localhost:7243"
+      "/api/": "http://localhost:7243"
     },
   },
 });

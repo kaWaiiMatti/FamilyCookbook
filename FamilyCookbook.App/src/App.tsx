@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getWeatherForecast } from "./utils/apiClient";
+import { getUnits } from "./utils/apiClient";
 import { useMsal } from "@azure/msal-react";
 
 function App() {
@@ -9,10 +9,7 @@ function App() {
   const { accounts } = useMsal();
 
   useEffect(() => {
-    if (!accounts.length) {
-      return;
-    }
-    getWeatherForecast().then((text) => setResult(text));
+    getUnits().then((text) => setResult(text));
   }, [accounts]);
 
   return (
