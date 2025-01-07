@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getUnits } from "./utils/apiClient";
 import { useMsal } from "@azure/msal-react";
+import { Unit } from "./interfaces.ts";
 
 function App() {
-  const [result, setResult] = useState<string>("");
+  const [result, setResult] = useState<Unit[] | null>(null);
 
   const { accounts } = useMsal();
 
@@ -14,9 +14,8 @@ function App() {
 
   return (
     <>
-      <h1 className="title">Weather forecast</h1>
-      <p>{result}</p>
-      <Link to="/hello">Go to hello</Link>
+      <h1 className="title">Temporary main page</h1>
+      {result && result.map((unit: Unit) => <p key={unit.id}>{unit.id} {unit.name} ({unit.abbreviation})</p>)}
     </>
   );
 }
