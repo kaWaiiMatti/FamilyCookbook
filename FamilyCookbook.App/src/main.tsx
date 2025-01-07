@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import { msalConfig } from "./authConfig.ts";
 import { AuthenticationResult, EventType, PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
+import { UnitsView } from "./views/UnitsView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: "/hello",
-        element: <p>world</p>,
+        path: "/units",
+        element: <UnitsView/>,
       },
     ],
   },

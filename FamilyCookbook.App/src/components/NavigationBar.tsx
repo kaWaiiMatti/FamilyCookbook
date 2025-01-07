@@ -64,6 +64,10 @@ const NavigationBar = () => {
             Home
           </Link>
 
+          <Link className="navbar-item" to="/units">
+            Units
+          </Link>
+
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">Events</a>
 
