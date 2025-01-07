@@ -27,26 +27,13 @@ builder.Services.AddDbContext<CookbookDataContext>(options =>
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseAuthorization();
 
-app.MapGet("/api/units", async (CookbookDataContext dataContext) =>
-    {
-        var units = await dataContext.Units.ToListAsync();
-        return units;
-    })
-    .RequireAuthorization()
-    .WithName("GetUnits")
-    .WithOpenApi();
+app
+    .MapGet("/api/units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync())
+    .RequireAuthorization();
 
 app.Run();
