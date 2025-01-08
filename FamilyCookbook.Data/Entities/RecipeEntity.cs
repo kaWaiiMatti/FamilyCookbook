@@ -8,7 +8,7 @@ public class RecipeEntity
 
     public int Id { get; set; }
 
-    public int FamilyId { get; set; }
+    public required int FamilyId { get; set; }
     public FamilyEntity Family { get; set; } = default!;
 
     [MaxLength(MaxNameLength)]
