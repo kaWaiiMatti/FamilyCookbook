@@ -10,6 +10,7 @@ import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@a
 import { RecipesView } from "./views/RecipesView.tsx";
 import { UnitsView } from "./views/UnitsView.tsx";
 import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
+import { NewRecipeView } from "./views/NewRecipeView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/new-recipe",
+        element: <NewRecipeView/>,
       },
       {
         path: "/recipes",

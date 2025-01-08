@@ -43,7 +43,7 @@ const NavigationBar = () => {
             <a className="navbar-link">Recipes</a>
 
             <div className="navbar-dropdown">
-              <Link className="navbar-item" to="/new-event">
+              <Link className="navbar-item" to="/new-recipe">
                 New
               </Link>
               <Link className="navbar-item" to="/recipes">
