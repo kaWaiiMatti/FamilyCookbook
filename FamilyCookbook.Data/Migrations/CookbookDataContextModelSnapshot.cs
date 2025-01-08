@@ -67,7 +67,7 @@ namespace FamilyCookbook.Data.Migrations
                     b.ToTable("FamilyMemberEntity");
                 });
 
-            modelBuilder.Entity("FamilyCookbook.Data.Entities.IngrediantEntity", b =>
+            modelBuilder.Entity("FamilyCookbook.Data.Entities.IngredientEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,9 +77,6 @@ namespace FamilyCookbook.Data.Migrations
 
                     b.Property<float>("Amount")
                         .HasColumnType("real");
-
-                    b.Property<int>("ReciceId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("RecipeId")
                         .HasColumnType("integer");
@@ -157,10 +154,10 @@ namespace FamilyCookbook.Data.Migrations
                     b.Navigation("Family");
                 });
 
-            modelBuilder.Entity("FamilyCookbook.Data.Entities.IngrediantEntity", b =>
+            modelBuilder.Entity("FamilyCookbook.Data.Entities.IngredientEntity", b =>
                 {
                     b.HasOne("FamilyCookbook.Data.Entities.RecipeEntity", "Recipe")
-                        .WithMany("Ingrediants")
+                        .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -196,7 +193,7 @@ namespace FamilyCookbook.Data.Migrations
 
             modelBuilder.Entity("FamilyCookbook.Data.Entities.RecipeEntity", b =>
                 {
-                    b.Navigation("Ingrediants");
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

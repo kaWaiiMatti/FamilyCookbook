@@ -13,5 +13,5 @@ public class RecipeEntity
 
     [MaxLength(MaxNameLength)]
     public required string Name { get; set; }
-    public ICollection<IngrediantEntity> Ingrediants { get; set; } = default!;
+    public ICollection<IngredientEntity> Ingredients { get; set; } = default!;
 }
