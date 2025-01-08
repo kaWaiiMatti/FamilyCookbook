@@ -7,6 +7,10 @@ export interface Ingredient {
   unit: Unit;
 }
 
+export interface NewRecipeRequest {
+  name: string;
+}
+
 export interface Recipe {
   id: number;
   name: string;

@@ -1,3 +1,5 @@
+using FamilyCookbook.Backend.Dto;
+using FamilyCookbook.Backend.Logic;
 using FamilyCookbook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -24,6 +26,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddDbContext<CookbookDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
 
+builder.Services.AddScoped<IRecipeLogic, RecipeLogic>();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +38,10 @@ app.UseAuthorization();
 
 app
     .MapGet("/api/recipes", async (CookbookDataContext dataContext) => await dataContext.Recipes.ToListAsync())
+    .RequireAuthorization();
+
+app
+    .MapPost("/api/recipes", async (IRecipeLogic logic, NewRecipeDto recipe) => await logic.CreateNew(recipe))
     .RequireAuthorization();
 
 app
