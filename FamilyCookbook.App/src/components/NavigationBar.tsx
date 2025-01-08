@@ -40,13 +40,13 @@ const NavigationBar = () => {
           </Link>
 
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">Events</a>
+            <a className="navbar-link">Recipes</a>
 
             <div className="navbar-dropdown">
               <Link className="navbar-item" to="/new-event">
                 New
               </Link>
-              <Link className="navbar-item" to="/events">
+              <Link className="navbar-item" to="/recipes">
                 Browse
               </Link>
               <hr className="navbar-divider" />

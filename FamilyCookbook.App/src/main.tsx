@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import { msalConfig } from "./authConfig.ts";
 import { AuthenticationResult, EventType, PublicClientApplication } from "@azure/msal-browser";
 import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react";
+import { RecipesView } from "./views/RecipesView.tsx";
 import { UnitsView } from "./views/UnitsView.tsx";
 import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
 
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/recipes",
+        element: <RecipesView/>,
       },
       {
         path: "/units",

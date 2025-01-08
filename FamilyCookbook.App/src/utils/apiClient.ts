@@ -1,6 +1,6 @@
 // import { HomePageDto, ShortNameAvailableRequest, ShortNameAvailableResponse } from "../interfaces";
 import { msalInstance } from "../main";
-import { Unit } from "../interfaces.ts";
+import { Recipe, Unit } from "../interfaces.ts";
 
 // TODO: FIX THIS FILE
 
@@ -54,6 +54,10 @@ async function post<T, B>(endpoint: string, body: B, options: RequestOptions | n
 
   const data: T = await response.json();
   return data;
+}
+
+export async function getRecipes(): Promise<Recipe[]> {
+  return await get<Recipe[]>("api/recipes");
 }
 
 export async function getUnits(): Promise<Unit[]> {

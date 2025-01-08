@@ -33,6 +33,10 @@ var app = builder.Build();
 app.UseAuthorization();
 
 app
+    .MapGet("/api/recipes", async (CookbookDataContext dataContext) => await dataContext.Recipes.ToListAsync())
+    .RequireAuthorization();
+
+app
     .MapGet("/api/units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync())
     .RequireAuthorization();
 
