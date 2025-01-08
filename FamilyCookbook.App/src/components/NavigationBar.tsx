@@ -45,7 +45,6 @@ const NavigationBar = () => {
           className={`navbar-burger ${menuActive ? 'is-active' : ''}`}
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -54,7 +53,7 @@ const NavigationBar = () => {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? 'is-active' : ''}`}>
+      <div className={`navbar-menu ${menuActive ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
             Home
