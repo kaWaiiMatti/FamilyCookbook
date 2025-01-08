@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
+import { useState } from "react";
 
 const NavigationBar = () => {
   const { instance } = useMsal();
+
+  const [menuActive, setMenuActive] = useState<boolean>(false);
+
 
   const handleLogoutRedirect = () => {
     instance.logoutRedirect().catch((error) => console.log(error));
@@ -36,8 +40,9 @@ const NavigationBar = () => {
         </a>
 
         <a
+          onClick={() => setMenuActive((prevState) => !prevState)}
           role="button"
-          className="navbar-burger"
+          className={`navbar-burger ${menuActive ? 'is-active' : ''}`}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -49,7 +54,7 @@ const NavigationBar = () => {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div id="navbarBasicExample" className={`navbar-menu ${menuActive ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
             Home
