@@ -39,7 +39,7 @@ const NavigationBar = () => {
           </svg>
         </a>
 
-        <a
+        <button
           onClick={() => setMenuActive((prevState) => !prevState)}
           role="button"
           className={`navbar-burger ${menuActive ? 'is-active' : ''}`}
@@ -50,7 +50,7 @@ const NavigationBar = () => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </button>
       </div>
 
       <div className={`navbar-menu ${menuActive ? 'is-active' : ''}`}>
