@@ -11,5 +11,5 @@ public class FamilyEntity
     [MaxLength(MaxNameLength)]
     public required string Name { get; set; }
     public ICollection<FamilyMemberEntity> FamilyMembers { get; set; } = default!;
-    public ICollection<RecipeEntity> Recipies { get; set; } = default!;
+    public ICollection<RecipeEntity> Recipes { get; set; } = default!;
 }

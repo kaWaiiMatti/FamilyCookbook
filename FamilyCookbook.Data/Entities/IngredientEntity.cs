@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FamilyCookbook.Data.Entities;
 
-[Table("Ingrediants")]
 public class IngredientEntity
 {
     public const int MaxSpecifierLength = 50;

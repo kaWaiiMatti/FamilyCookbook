@@ -2,6 +2,7 @@
 using FamilyCookbook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FamilyCookbook.Data.Migrations
 {
     [DbContext(typeof(CookbookDataContext))]
-    partial class CookbookDataContextModelSnapshot : ModelSnapshot
+    [Migration("20250108161930_Fix RecipeId spelling")]
+    partial class FixRecipeIdspelling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +97,7 @@ namespace FamilyCookbook.Data.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingrediants");
                 });
 
             modelBuilder.Entity("FamilyCookbook.Data.Entities.RecipeEntity", b =>
@@ -117,7 +120,7 @@ namespace FamilyCookbook.Data.Migrations
 
                     b.HasIndex("FamilyId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipies");
                 });
 
             modelBuilder.Entity("FamilyCookbook.Data.Entities.UnitEntity", b =>
@@ -176,7 +179,7 @@ namespace FamilyCookbook.Data.Migrations
             modelBuilder.Entity("FamilyCookbook.Data.Entities.RecipeEntity", b =>
                 {
                     b.HasOne("FamilyCookbook.Data.Entities.FamilyEntity", "Family")
-                        .WithMany("Recipes")
+                        .WithMany("Recipies")
                         .HasForeignKey("FamilyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -188,7 +191,7 @@ namespace FamilyCookbook.Data.Migrations
                 {
                     b.Navigation("FamilyMembers");
 
-                    b.Navigation("Recipes");
+                    b.Navigation("Recipies");
                 });
 
             modelBuilder.Entity("FamilyCookbook.Data.Entities.RecipeEntity", b =>
