@@ -33,8 +33,10 @@ export const UnitsView = () => {
 
   const headers = table.getHeaderGroups()[0].headers;
 
-  return <table className='table is-striped is-fullwidth'>
-    <thead>
+  return <>
+    <h1 className="title">Units</h1>
+    <table className='table is-striped is-fullwidth'>
+      <thead>
       <tr>
         {headers.map(header => (
           <th key={header.id}>
@@ -42,18 +44,19 @@ export const UnitsView = () => {
           </th>
         ))}
       </tr>
-    </thead>
-    <tbody>
-    {table.getRowModel().rows.map(row => (
-      <tr key={row.id}>
-        {row.getVisibleCells().map(cell => (
-          <td key={cell.id}>
-            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-          </td>
-        ))}
-      </tr>
-    ))}
-    </tbody>
-  </table>;
+      </thead>
+      <tbody>
+      {table.getRowModel().rows.map(row => (
+        <tr key={row.id}>
+          {row.getVisibleCells().map(cell => (
+            <td key={cell.id}>
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </td>
+          ))}
+        </tr>
+      ))}
+      </tbody>
+    </table>
+  </>;
 };
 
