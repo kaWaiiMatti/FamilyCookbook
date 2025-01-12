@@ -1,14 +1,16 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { NewRecipeRequest } from "../interfaces.ts";
 import { createRecipe } from "../utils/apiClient.ts";
+import { useNavigate } from "react-router-dom";
 
 export const NewRecipeView = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<NewRecipeRequest>();
-  const onSubmit: SubmitHandler<NewRecipeRequest> = async (data) => {
-    const created = await createRecipe(data);
-
-    // TODO: WHAT TO DO AFTER SUCCESS?
-    console.log(created);
+  const onSubmit: SubmitHandler<NewRecipeRequest> = (data) => {
+    createRecipe(data).then(created => {
+      console.log(created);
+      navigate("/recipes");
+    });
   };
 
   return <>
