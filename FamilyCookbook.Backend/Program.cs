@@ -5,6 +5,7 @@ using FamilyCookbook.Data;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,25 +43,21 @@ var app = builder.Build();
 
 app.UseAuthorization();
 
-app
-    .MapGet("/api/recipes", async (CookbookDataContext dataContext) => await dataContext.Recipes.ToListAsync())
+var group = app
+    .MapGroup("/api/")
     .RequireAuthorization();
 
-app
-    .MapPost("/api/recipes", async (IRecipeLogic logic, NewRecipeDto recipe, IValidator<NewRecipeDto> validator) =>
+group.MapGet("recipes", async (CookbookDataContext dataContext) => await dataContext.Recipes.ToListAsync());
+group.MapPost("recipes", async Task<Results<Created<RecipeDto>, ValidationProblem>> (IRecipeLogic logic, NewRecipeDto recipe, IValidator<NewRecipeDto> validator) =>
     {
         var validationResult = await validator.ValidateAsync(recipe);
         if (!validationResult.IsValid)
         {
-            return Results.ValidationProblem(validationResult.ToDictionary());
+            return TypedResults.ValidationProblem(validationResult.ToDictionary());
         }
         var result =  await logic.CreateNew(recipe);
-        return Results.Created($"/api/recipe/{result.Id}", result);
-    })
-    .RequireAuthorization();
-
-app
-    .MapGet("/api/units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync())
-    .RequireAuthorization();
+        return TypedResults.Created($"/api/recipe/{result.Id}", result);
+    });
+group.MapGet("units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync());
 
 app.Run();
