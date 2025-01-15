@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NavigationBar = () => {
   const { instance } = useMsal();
 
   const [menuActive, setMenuActive] = useState<boolean>(false);
 
+  const handleWindowResize = () => {
+    setMenuActive(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [])
 
   const handleLogoutRedirect = () => {
     instance.logoutRedirect().catch((error) => console.log(error));
