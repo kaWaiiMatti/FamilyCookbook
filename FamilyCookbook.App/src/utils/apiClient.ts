@@ -1,6 +1,8 @@
 // import { HomePageDto, ShortNameAvailableRequest, ShortNameAvailableResponse } from "../interfaces";
 import { msalInstance } from "../main";
 import { NewRecipeRequest, Recipe, Unit } from "../interfaces.ts";
+import { loginRequest } from "../authConfig.ts";
+import { AuthenticationResult, InteractionRequiredAuthError } from "@azure/msal-browser";
 
 // TODO: FIX THIS FILE
 
@@ -21,9 +23,24 @@ async function get<T>(endpoint: string, options: RequestOptions | null = null): 
     throw Error("No active account");
   }
 
-  const tokenResponse = await msalInstance.acquireTokenSilent({
+  const tokenRequest = {
     scopes: ["api://d165df3d-23bf-488a-9737-d74762acb2c7/.default"],
-  });
+  };
+  let tokenResponse: AuthenticationResult;
+  try {
+    tokenResponse = await msalInstance.acquireTokenSilent(tokenRequest);
+  } catch (error) {
+    if (error instanceof InteractionRequiredAuthError) {
+      // If silent acquisition fails, require interactive login
+
+      //const loginResponse =
+      await msalInstance.loginPopup(loginRequest);
+      // Acquire token after interactive login
+      tokenResponse = await msalInstance.acquireTokenSilent(tokenRequest);
+    } else {
+      throw error;
+    }
+  }
   headers["Authorization"] = `Bearer ${tokenResponse.accessToken}`;
 
 
