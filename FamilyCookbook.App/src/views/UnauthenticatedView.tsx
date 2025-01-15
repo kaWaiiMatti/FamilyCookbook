@@ -5,12 +5,12 @@ import '../css/unauthenticated.css'
 export const UnauthenticatedView = () => {
   const { instance } = useMsal();
 
-  const handleLoginRedirect = () => {
-    instance.loginRedirect(loginRequest).catch((error) => console.log(error));
+  const handleLogin = () => {
+    instance.loginPopup(loginRequest).catch((error) => console.log(error));
   };
 
   return <div className="unauthenticated-container">
-      <button className="button" onClick={handleLoginRedirect}>
+      <button className="button" onClick={handleLogin}>
       Sign in
     </button>
   </div>
