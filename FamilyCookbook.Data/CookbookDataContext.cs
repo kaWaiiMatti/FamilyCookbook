@@ -8,6 +8,7 @@ public class CookbookDataContext(DbContextOptions<CookbookDataContext> options) 
     public DbSet<FamilyEntity> Families { get; set; }
     public DbSet<FamilyMemberEntity> FamilyMembers { get; set; }
     public DbSet<IngredientEntity> Ingredients { get; set; }
+    public DbSet<MealEntity> Meals { get; set; }
     public DbSet<RecipeEntity> Recipes { get; set; }
     public DbSet<UnitEntity> Units { get; set; }
 }
