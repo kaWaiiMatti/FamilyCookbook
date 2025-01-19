@@ -43,9 +43,18 @@ const NavigationBar = () => {
             Home
           </Link>
 
-          <Link className="navbar-item" to="/units">
-            Units
-          </Link>
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link">Meals</a>
+
+            <div className="navbar-dropdown">
+              <Link className="navbar-item" to="/new-meal">
+                New
+              </Link>
+              <Link className="navbar-item" to="/meals">
+                Browse
+              </Link>
+            </div>
+          </div>
 
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">Recipes</a>
@@ -70,14 +79,18 @@ const NavigationBar = () => {
               </Link>
             </div>
           </div>
+
+          <Link className="navbar-item" to="/units">
+            Units
+          </Link>
         </div>
 
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-                <button className="button" onClick={handleLogoutRedirect}>
-                  Sign out
-                </button>
+              <button className="button" onClick={handleLogoutRedirect}>
+                Sign out
+              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,8 @@
+.control {
+  margin-bottom: 1rem;
+}
+
+label.radio > input {
+  margin-right: 0.5rem;
+
+}

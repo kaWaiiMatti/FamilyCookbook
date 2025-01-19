@@ -1,10 +1,8 @@
 // import { HomePageDto, ShortNameAvailableRequest, ShortNameAvailableResponse } from "../interfaces";
 import { msalInstance } from "../main";
-import { NewRecipeRequest, Recipe, Unit } from "../interfaces.ts";
+import { Meal, NewMealRequest, NewRecipeRequest, Recipe, Unit } from "../interfaces.ts";
 import { loginRequest } from "../authConfig.ts";
 import { AuthenticationResult, InteractionRequiredAuthError } from "@azure/msal-browser";
-
-// TODO: FIX THIS FILE
 
 type RequestOptions = {};
 
@@ -75,6 +73,10 @@ async function post<T, B>(endpoint: string, body: B): Promise<T> {
   }
 
   return await response.json();
+}
+
+export function createMeal(request: NewMealRequest): Promise<Meal> {
+  return post<Meal, NewMealRequest>("api/meals", request);
 }
 
 export async function createRecipe(request: NewRecipeRequest): Promise<Recipe> {

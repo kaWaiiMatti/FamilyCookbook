@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./css/bulma.css";
+import "./css/overrides.css"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import { msalConfig } from "./authConfig.ts";
@@ -11,6 +12,7 @@ import { RecipesView } from "./views/RecipesView.tsx";
 import { UnitsView } from "./views/UnitsView.tsx";
 import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
 import { NewRecipeView } from "./views/NewRecipeView.tsx";
+import { NewMealView } from "./views/NewMealView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/new-meal",
+        element: <NewMealView/>,
       },
       {
         path: "/new-recipe",
