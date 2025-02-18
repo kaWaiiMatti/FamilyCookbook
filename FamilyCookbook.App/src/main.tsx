@@ -1,13 +1,21 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "./css/bulma.css";
-import "./css/overrides.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/overrides.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import { msalConfig } from "./authConfig.ts";
-import { AuthenticationResult, EventType, PublicClientApplication } from "@azure/msal-browser";
-import { AuthenticatedTemplate, MsalProvider, UnauthenticatedTemplate } from "@azure/msal-react";
+import {
+  AuthenticationResult,
+  EventType,
+  PublicClientApplication,
+} from "@azure/msal-browser";
+import {
+  AuthenticatedTemplate,
+  MsalProvider,
+  UnauthenticatedTemplate,
+} from "@azure/msal-react";
 import { RecipesView } from "./views/RecipesView.tsx";
 import { UnitsView } from "./views/UnitsView.tsx";
 import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
@@ -24,19 +32,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/new-meal",
-        element: <NewMealView/>,
+        element: <NewMealView />,
       },
       {
         path: "/new-recipe",
-        element: <NewRecipeView/>,
+        element: <NewRecipeView />,
       },
       {
         path: "/recipes",
-        element: <RecipesView/>,
+        element: <RecipesView />,
       },
       {
         path: "/units",
-        element: <UnitsView/>,
+        element: <UnitsView />,
       },
     ],
   },
@@ -73,7 +81,7 @@ createRoot(document.getElementById("root")!).render(
         <RouterProvider router={router} />
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>
-        <UnauthenticatedView/>
+        <UnauthenticatedView />
       </UnauthenticatedTemplate>
     </MsalProvider>
   </StrictMode>
