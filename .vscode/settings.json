@@ -5,5 +5,7 @@
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
   "omnisharp.useEditorFormattingSettings": false,
-  "csharp.format.enable": true
+  "csharp.format.enable": true,
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true
 }
