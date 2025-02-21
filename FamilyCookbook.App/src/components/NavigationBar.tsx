@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 import { useMsal } from "@azure/msal-react";
 import { useEffect, useState } from "react";
+import {
+  Collapse,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Nav,
+  Navbar,
+  NavbarText,
+  NavbarToggler,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+} from "reactstrap";
 
 const NavigationBar = () => {
   const { instance } = useMsal();
@@ -10,15 +23,48 @@ const NavigationBar = () => {
   const handleWindowResize = () => {
     setMenuActive(false);
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    return () => window.removeEventListener('resize', handleWindowResize);
-  }, [])
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   const handleLogoutRedirect = () => {
     instance.logoutRedirect().catch((error) => console.log(error));
   };
+
+  return (
+    <Navbar>
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="me-auto" navbar>
+          <NavItem>
+            <NavLink href="/components/">Components</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="https://github.com/reactstrap/reactstrap">
+              GitHub
+            </NavLink>
+          </NavItem>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
+              Options
+            </DropdownToggle>
+            <DropdownMenu right>
+              <DropdownItem>Option 1</DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+        <NavbarText>Simple Text</NavbarText>
+      </Collapse>
+    </Navbar>
+  );
 
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -26,7 +72,7 @@ const NavigationBar = () => {
         <button
           onClick={() => setMenuActive((prevState) => !prevState)}
           role="button"
-          className={`navbar-burger ${menuActive ? 'is-active' : ''}`}
+          className={`navbar-burger ${menuActive ? "is-active" : ""}`}
           aria-label="menu"
           aria-expanded="false"
         >
@@ -37,7 +83,7 @@ const NavigationBar = () => {
         </button>
       </div>
 
-      <div className={`navbar-menu ${menuActive ? 'is-active' : ''}`}>
+      <div className={`navbar-menu ${menuActive ? "is-active" : ""}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
             Home

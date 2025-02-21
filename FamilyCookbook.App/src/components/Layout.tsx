@@ -4,12 +4,12 @@ import { NavigationBar } from "./NavigationBar";
 export default function Layout() {
   return (
     <>
-      <NavigationBar />
-      <section className="section">
-        <div className="container">
-          <Outlet />
-        </div>
-      </section>
+      <header>
+        <NavigationBar />
+      </header>
+      <div className="container">
+        <Outlet />
+      </div>
     </>
   );
 }
