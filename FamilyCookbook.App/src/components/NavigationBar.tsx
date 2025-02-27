@@ -37,7 +37,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <Navbar>
+    <Navbar expand="sm">
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="me-auto" navbar>
