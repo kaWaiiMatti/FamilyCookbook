@@ -23,9 +23,6 @@ const NavigationBar = () => {
   const handleWindowResize = () => {
     setMenuActive(false);
   };
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
@@ -38,8 +35,11 @@ const NavigationBar = () => {
 
   return (
     <Navbar expand="sm">
-      <NavbarToggler className="ms-auto" onClick={toggle} />
-      <Collapse isOpen={isOpen} navbar>
+      <NavbarToggler
+        className="ms-auto"
+        onClick={() => setMenuActive((prev) => !prev)}
+      />
+      <Collapse isOpen={menuActive} navbar>
         <Nav className="me-auto" navbar>
           <NavItem>
             <NavLink href="/components/">Components</NavLink>
