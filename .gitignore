@@ -8,5 +8,5 @@
 .idea/
 
 # postgres container data
-Docker/*/data/
-Docker/**/*password*.txt
+Docker/db-data/
+Docker/*password*.txt

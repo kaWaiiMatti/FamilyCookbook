@@ -12,8 +12,8 @@ services:
     secrets:
       - postgres-password
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./Docker/db-data:/var/lib/postgresql/data
 
 secrets:
   postgres-password:
-    file: ./postgres-password.txt
+    file: ./Docker/postgres-password.txt
