@@ -4,8 +4,8 @@ export interface Ingredient {
   id: number;
   amount: number;
   name: string;
-  specifier: string | null
-  recipeId: number
+  specifier: string | null;
+  recipeId: number;
   unit: Unit;
 }
 
@@ -31,8 +31,11 @@ export interface Recipe {
   name: string;
 }
 
-export interface Unit {
-  id: number;
+export interface NewUnitRequest {
   abbreviation: string;
   name: string;
+}
+
+export interface Unit extends NewUnitRequest {
+  id: number;
 }

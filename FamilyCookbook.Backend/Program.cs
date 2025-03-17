@@ -1,4 +1,5 @@
 using FamilyCookbook.Backend.Dto;
+using FamilyCookbook.Backend.Endpoints;
 using FamilyCookbook.Backend.Logic;
 using FamilyCookbook.Backend.Validation;
 using FamilyCookbook.Data;
@@ -34,6 +35,7 @@ builder.Services.AddScoped<IRecipeLogic, RecipeLogic>();
 
 // Validators
 builder.Services.AddScoped<IValidator<NewRecipeDto>, NewRecipeValidator>();
+builder.Services.AddScoped<IValidator<NewUnitDto>, NewUnitValidator>();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -47,17 +49,8 @@ var group = app
     .MapGroup("/api/")
     .RequireAuthorization();
 
-group.MapGet("recipes", async (CookbookDataContext dataContext) => await dataContext.Recipes.ToListAsync());
-group.MapPost("recipes", async Task<Results<Created<RecipeDto>, ValidationProblem>> (IRecipeLogic logic, NewRecipeDto recipe, IValidator<NewRecipeDto> validator) =>
-    {
-        var validationResult = await validator.ValidateAsync(recipe);
-        if (!validationResult.IsValid)
-        {
-            return TypedResults.ValidationProblem(validationResult.ToDictionary());
-        }
-        var result =  await logic.CreateNew(recipe);
-        return TypedResults.Created($"/api/recipe/{result.Id}", result);
-    });
-group.MapGet("units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync());
+group.RegisterRecipeEndpoints();
+group.RegisterUnitEndpoints();
+
 
 app.Run();

@@ -1,16 +1,29 @@
 // import { HomePageDto, ShortNameAvailableRequest, ShortNameAvailableResponse } from "../interfaces";
 import { msalInstance } from "../main";
-import { Meal, NewMealRequest, NewRecipeRequest, Recipe, Unit } from "../interfaces.ts";
+import {
+  Meal,
+  NewMealRequest,
+  NewRecipeRequest,
+  NewUnitRequest,
+  Recipe,
+  Unit,
+} from "../interfaces.ts";
 import { loginRequest } from "../authConfig.ts";
-import { AuthenticationResult, InteractionRequiredAuthError } from "@azure/msal-browser";
+import {
+  AuthenticationResult,
+  InteractionRequiredAuthError,
+} from "@azure/msal-browser";
 
 type RequestOptions = {};
 
 const defaultHeaders = {
-  "Content-Type": "application/json"
+  "Content-Type": "application/json",
 };
 
-async function get<T>(endpoint: string, options: RequestOptions | null = null): Promise<T> {
+async function get<T>(
+  endpoint: string,
+  options: RequestOptions | null = null
+): Promise<T> {
   if (options) {
     console.log(options);
   }
@@ -41,10 +54,9 @@ async function get<T>(endpoint: string, options: RequestOptions | null = null): 
   }
   headers["Authorization"] = `Bearer ${tokenResponse.accessToken}`;
 
-
   const response = await fetch(endpoint, {
     method: "GET",
-    headers: headers
+    headers: headers,
   });
 
   if (!response.ok) {
@@ -65,7 +77,7 @@ async function post<T, B>(endpoint: string, body: B): Promise<T> {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
@@ -81,6 +93,10 @@ export function createMeal(request: NewMealRequest): Promise<Meal> {
 
 export async function createRecipe(request: NewRecipeRequest): Promise<Recipe> {
   return await post<Recipe, NewRecipeRequest>("api/recipes", request);
+}
+
+export async function createUnit(request: NewUnitRequest): Promise<Unit> {
+  return await post<Unit, NewUnitRequest>("api/units", request);
 }
 
 export async function getRecipes(): Promise<Recipe[]> {

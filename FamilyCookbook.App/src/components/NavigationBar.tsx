@@ -73,11 +73,19 @@ export const NavigationBar = () => {
             </DropdownMenu>
           </UncontrolledDropdown>
 
-          <NavItem>
-            <Link className="nav-link" to="/units">
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle nav caret>
               Units
-            </Link>
-          </NavItem>
+            </DropdownToggle>
+            <DropdownMenu right>
+              <Link className="dropdown-item" to="/new-unit">
+                New
+              </Link>
+              <Link className="dropdown-item" to="/units">
+                Browse
+              </Link>
+            </DropdownMenu>
+          </UncontrolledDropdown>
         </Nav>
         <Button onClick={handleLogoutRedirect}>Sign out</Button>
       </Collapse>
