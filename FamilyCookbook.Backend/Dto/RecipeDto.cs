@@ -6,15 +6,6 @@ public class RecipeDto
 {
     public required int Id { get; set; }
     public required string Name { get; set; }
-
-    public static RecipeDto FromEntity(RecipeEntity entity)
-    {
-        return new RecipeDto
-        {
-            Id = entity.Id,
-            Name = entity.Name,
-        };
-    }
 }
 
 public class NewRecipeDto
