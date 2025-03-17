@@ -4,7 +4,6 @@ import {
   MinLengthValidationMessage,
   RequiredValidationMessage,
 } from "./validation/Validation";
-import { useEffect } from "react";
 
 const labelClassName = "form-label";
 const inputClassName = "form-control";
@@ -33,17 +32,6 @@ export const Input = ({
     formState: { errors },
   } = useFormContext();
   const relatedErrors = errors[name];
-
-  useEffect(() => {
-    console.log("required", {
-      formName,
-      label,
-      name,
-      required,
-      errors,
-      relatedErrors,
-    });
-  }, [required, errors]);
 
   return (
     <>
