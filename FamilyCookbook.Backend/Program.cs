@@ -1,12 +1,10 @@
 using FamilyCookbook.Backend.Dto;
 using FamilyCookbook.Backend.Endpoints;
-using FamilyCookbook.Backend.Logic;
 using FamilyCookbook.Backend.Validation;
 using FamilyCookbook.Data;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,9 +27,6 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddDbContext<CookbookDataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("cookbook")));
-
-// Logic
-builder.Services.AddScoped<IRecipeLogic, RecipeLogic>();
 
 // Validators
 builder.Services.AddScoped<IValidator<NewRecipeDto>, NewRecipeValidator>();
