@@ -12,3 +12,12 @@ public class NewUnitValidator : AbstractValidator<NewUnitDto>
         RuleFor(x => x.Name).Length(1, UnitEntity.MaxNameLength);
     }
 }
+
+public class UpdateUnitValidator : AbstractValidator<UpdateUnitDto>
+{
+    public UpdateUnitValidator()
+    {
+        RuleFor(x => x.Abbreviation).Length(1, UnitEntity.MaxAbbreviationLength);
+        RuleFor(x => x.Name).Length(1, UnitEntity.MaxNameLength);
+    }
+}

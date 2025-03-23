@@ -13,6 +13,13 @@ public static class UnitEndpoints
     {
         group.MapGet("units", async (CookbookDataContext dataContext) => await dataContext.Units.ToListAsync());
 
+        group.MapGet("unit/{id:int}",
+            async (CookbookDataContext dataContext, int id) =>
+            {
+                var unit = await dataContext.Units.FindAsync(id);
+                return unit is null ? Results.NotFound() : Results.Ok(unit.ToDto());
+            });
+
         group.MapPost("units",
             async Task<Results<Created<UnitDto>, ValidationProblem>> (CookbookDataContext dataContext, NewUnitDto unit,
                 IValidator<NewUnitDto> validator) =>
@@ -28,6 +35,29 @@ public static class UnitEndpoints
                 await dataContext.SaveChangesAsync();
 
                 return TypedResults.Created($"/api/unit/{entity.Id}", entity.ToDto());
+            });
+
+        group.MapPut("unit/{id:int}",
+            async (CookbookDataContext dataContext, int id, UpdateUnitDto update,
+                IValidator<UpdateUnitDto> validator) =>
+            {
+                var validationResult = await validator.ValidateAsync(update);
+                if (!validationResult.IsValid)
+                {
+                    return TypedResults.ValidationProblem(validationResult.ToDictionary());
+                }
+
+                var existing = await dataContext.Units.FindAsync(id);
+                if (existing is null)
+                {
+                    return Results.NotFound();
+                }
+
+                existing.Abbreviation = update.Abbreviation;
+                existing.Name = update.Name;
+                await dataContext.SaveChangesAsync();
+
+                return TypedResults.Ok(existing.ToDto());
             });
     }
 }

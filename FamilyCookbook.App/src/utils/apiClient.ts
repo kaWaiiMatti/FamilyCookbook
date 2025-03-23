@@ -1,4 +1,3 @@
-// import { HomePageDto, ShortNameAvailableRequest, ShortNameAvailableResponse } from "../interfaces";
 import { msalInstance } from "../main";
 import {
   Meal,
@@ -7,6 +6,7 @@ import {
   NewUnitRequest,
   Recipe,
   Unit,
+  UpdateUnitRequest,
 } from "../interfaces.ts";
 import { loginRequest } from "../authConfig.ts";
 import {
@@ -87,22 +87,61 @@ async function post<T, B>(endpoint: string, body: B): Promise<T> {
   return await response.json();
 }
 
+async function put<T, B>(endpoint: string, body: B): Promise<T> {
+  const headers: HeadersInit = { ...defaultHeaders };
+
+  const tokenResponse = await msalInstance.acquireTokenSilent({
+    scopes: ["api://d165df3d-23bf-488a-9737-d74762acb2c7/.default"],
+  });
+  headers["Authorization"] = `Bearer ${tokenResponse.accessToken}`;
+
+  const response = await fetch(endpoint, {
+    method: "PUT",
+    headers: headers,
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status} ${response.statusText}`);
+  }
+
+  return await response.json();
+}
+
 export function createMeal(request: NewMealRequest): Promise<Meal> {
-  return post<Meal, NewMealRequest>("api/meals", request);
+  return post<Meal, NewMealRequest>("/api/meals", request);
 }
 
 export async function createRecipe(request: NewRecipeRequest): Promise<Recipe> {
-  return await post<Recipe, NewRecipeRequest>("api/recipes", request);
+  return await post<Recipe, NewRecipeRequest>("/api/recipes", request);
 }
 
 export async function createUnit(request: NewUnitRequest): Promise<Unit> {
-  return await post<Unit, NewUnitRequest>("api/units", request);
+  return await post<Unit, NewUnitRequest>("/api/units", request);
 }
 
 export async function getRecipes(): Promise<Recipe[]> {
-  return await get<Recipe[]>("api/recipes");
+  return await get<Recipe[]>("/api/recipes");
+}
+export async function getUnit(id: number): Promise<Unit | null> {
+  try {
+    return await get<Unit>(`/api/unit/${id}`);
+  } catch (error) {
+    console.log("error", error);
+    if (error instanceof Error && error.message === "Error: 404 Not Found") {
+      return null;
+    }
+    throw error;
+  }
 }
 
 export async function getUnits(): Promise<Unit[]> {
-  return await get<Unit[]>("api/units");
+  return await get<Unit[]>("/api/units");
+}
+
+export async function updateUnit(
+  id: number,
+  request: UpdateUnitRequest
+): Promise<Unit> {
+  return await put<Unit, UpdateUnitRequest>(`/api/unit/${id}`, request);
 }

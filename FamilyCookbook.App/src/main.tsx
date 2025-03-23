@@ -22,6 +22,7 @@ import { UnauthenticatedView } from "./views/UnauthenticatedView.tsx";
 import { NewRecipeView } from "./views/NewRecipeView.tsx";
 import { NewMealView } from "./views/NewMealView.tsx";
 import { NewUnitView } from "./views/NewUnitView.tsx";
+import { EditUnitView } from "./views/EditUnitView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/recipes",
         element: <RecipesView />,
+      },
+      {
+        path: "/unit/:id",
+        element: <EditUnitView />,
       },
       {
         path: "/units",

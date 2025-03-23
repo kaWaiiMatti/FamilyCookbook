@@ -9,13 +9,16 @@ public class NewUnitDto
 
     public UnitEntity ToEntity()
     {
-
         return new UnitEntity
         {
             Abbreviation = Abbreviation,
             Name = Name,
         };
     }
+}
+
+public class UpdateUnitDto : NewUnitDto
+{
 }
 
 public class UnitDto : NewUnitDto
