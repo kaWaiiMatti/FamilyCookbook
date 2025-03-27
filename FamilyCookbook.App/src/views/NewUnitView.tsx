@@ -14,10 +14,7 @@ export const NewUnitView = () => {
   const formMethods = useForm<NewUnitRequest>();
   const { handleSubmit } = formMethods;
   const onSubmit: SubmitHandler<NewUnitRequest> = (data) => {
-    createUnit(data).then((created) => {
-      console.log(created);
-      navigate("/units");
-    });
+    createUnit(data).then(() => navigate("/units"));
   };
 
   return (
