@@ -49,7 +49,7 @@ export const NavigationBar = () => {
             <DropdownToggle nav caret>
               Meals
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu end>
               <Link className="dropdown-item" to="/new-meal">
                 New
               </Link>
@@ -63,7 +63,7 @@ export const NavigationBar = () => {
             <DropdownToggle nav caret>
               Recipes
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu end>
               <Link className="dropdown-item" to="/new-recipe">
                 New
               </Link>
@@ -77,7 +77,7 @@ export const NavigationBar = () => {
             <DropdownToggle nav caret>
               Units
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu end>
               <Link className="dropdown-item" to="/new-unit">
                 New
               </Link>
