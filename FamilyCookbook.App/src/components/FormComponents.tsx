@@ -30,6 +30,10 @@ export type RadioSelectProps = CommonInputProps & {
   options: SelectOption[];
 };
 
+export type SelectProps = CommonInputProps & {
+  options: SelectOption[];
+};
+
 export const Input = ({
   formName,
   label,
@@ -105,6 +109,36 @@ export const RadioSelect = ({
           </label>
         </div>
       ))}
+      {relatedErrors && relatedErrors.type === "required" && (
+        <RequiredValidationMessage />
+      )}
+    </>
+  );
+};
+
+export const Select = ({ formName, label, name, options }: SelectProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const relatedErrors = errors[name];
+
+  return (
+    <>
+      <label className={labelClassName} htmlFor={`${formName}-${name}`}>
+        {label}
+      </label>
+      <select
+        className={`${inputClassName} ${relatedErrors ? "is-invalid" : ""}`}
+        id={`${formName}-${name}`}
+        {...register(name, { required: true })}
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
       {relatedErrors && relatedErrors.type === "required" && (
         <RequiredValidationMessage />
       )}
