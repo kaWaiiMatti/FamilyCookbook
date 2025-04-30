@@ -23,6 +23,8 @@ import { NewRecipeView } from "./views/NewRecipeView.tsx";
 import { NewMealView } from "./views/NewMealView.tsx";
 import { NewUnitView } from "./views/NewUnitView.tsx";
 import { EditUnitView } from "./views/EditUnitView.tsx";
+import { MealsView } from "./views/MealsView.tsx";
+import { EditMealView } from "./views/EditMealView.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/meals",
+        element: <MealsView />,
+      },
+      {
+        path: "/meal/:id",
+        element: <EditMealView />,
       },
       {
         path: "/new-meal",

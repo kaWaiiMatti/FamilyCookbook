@@ -6,6 +6,7 @@ import {
   NewUnitRequest,
   Recipe,
   Unit,
+  UpdateMealRequest,
   UpdateUnitRequest,
 } from "../interfaces.ts";
 import { loginRequest } from "../authConfig.ts";
@@ -120,9 +121,25 @@ export async function createUnit(request: NewUnitRequest): Promise<Unit> {
   return await post<Unit, NewUnitRequest>("/api/units", request);
 }
 
+export async function getMeal(id: number): Promise<Meal | null> {
+  try {
+    return await get<Meal>(`/api/meal/${id}`);
+  } catch (error) {
+    console.log("error", error);
+    if (error instanceof Error && error.message === "Error: 404 Not Found") {
+      return null;
+    }
+    throw error;
+  }
+}
+export async function getMeals(): Promise<Meal[]> {
+  return await get<Meal[]>("/api/meals");
+}
+
 export async function getRecipes(): Promise<Recipe[]> {
   return await get<Recipe[]>("/api/recipes");
 }
+
 export async function getUnit(id: number): Promise<Unit | null> {
   try {
     return await get<Unit>(`/api/unit/${id}`);
@@ -137,6 +154,13 @@ export async function getUnit(id: number): Promise<Unit | null> {
 
 export async function getUnits(): Promise<Unit[]> {
   return await get<Unit[]>("/api/units");
+}
+
+export async function updateMeal(
+  id: number,
+  request: UpdateMealRequest
+): Promise<Meal> {
+  return await put<Meal, UpdateMealRequest>(`/api/meal/${id}`, request);
 }
 
 export async function updateUnit(

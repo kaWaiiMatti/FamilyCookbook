@@ -36,6 +36,8 @@ export interface NewUnitRequest {
   name: string;
 }
 
+export interface UpdateMealRequest extends NewMealRequest {}
+
 export interface UpdateUnitRequest extends NewUnitRequest {}
 
 export interface Unit extends NewUnitRequest {
