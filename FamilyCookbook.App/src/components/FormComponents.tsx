@@ -8,14 +8,26 @@ import {
 const labelClassName = "form-label";
 const inputClassName = "form-control";
 
-export type InputProps = {
+type CommonInputProps = {
   formName: string;
   label: string;
   name: string;
+};
+
+export type InputProps = CommonInputProps & {
   maxLength?: number;
   minLength?: number;
-  type: "text";
+  type: "text" | "date";
   required?: boolean;
+};
+
+export type SelectOption = {
+  label: string;
+  value: string;
+};
+
+export type RadioSelectProps = CommonInputProps & {
+  options: SelectOption[];
 };
 
 export const Input = ({
@@ -57,6 +69,45 @@ export const Input = ({
         relatedErrors.type === "maxLength" && (
           <MaxLengthValidationMessage maxLength={maxLength} />
         )}
+    </>
+  );
+};
+
+export const RadioSelect = ({
+  formName,
+  label,
+  name,
+  options,
+}: RadioSelectProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const relatedErrors = errors[name];
+
+  return (
+    <>
+      <label className={labelClassName}>{label}</label>
+      {options.map((option) => (
+        <div className="form-check" key={option.value}>
+          <input
+            className={`form-check-input ${relatedErrors ? "is-invalid" : ""}`}
+            type="radio"
+            id={`${formName}-${name}-${option.value}`}
+            {...register(name, { required: true })}
+          />
+          <label
+            className="form-check-label"
+            htmlFor={`${formName}-${name}-${option.value}`}
+            style={{ color: "var(--bs-body-color)" }}
+          >
+            {option.label}
+          </label>
+        </div>
+      ))}
+      {relatedErrors && relatedErrors.type === "required" && (
+        <RequiredValidationMessage />
+      )}
     </>
   );
 };
